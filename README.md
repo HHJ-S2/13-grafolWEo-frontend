@@ -4,13 +4,14 @@
 
 평화로운 그라폴위오 팀을 소개합니다💛
 
-저희는 네이버의 웹서비스인 전 세계 크리에이터들의 멋진 작품을 발견, 공유하고 사고팔 수 있는 창작 콘텐츠 커뮤니티인 그라폴리오 클론을 맡았습니다 :)
+저희는 네이버의 웹서비스인 전 세계 크리에이터들의 멋진 작품을 발견, 공유하고 사고팔 수 있는 <br>
+창작 콘텐츠 커뮤니티인 그라폴리오 클론을 맡았습니다 :)
 
 <br>
 
 ## 개발 인원 및 기간
 
-- 개발 기간 : 2020/11/19 ~ 2020/11/30
+- 개발 기간 : 2020/10/19 ~ 2020/10/30
 - 개발 인원 : 프론트엔드 4명, 백엔드 2명
 - [백엔드 github 링크](https://github.com/wecode-bootcamp-korea/13-grafolWEo-backend)
 
@@ -46,15 +47,11 @@
 ## 기술스택
 
 #### frontend
-- JavaScript
 - HTML
-- React (Class)
-- React-Router
-- React-Router-DOM
+- CSS (SASS)
+- JavaScript
+- React (CRA, Class, Router)
 - React-Slick
-- CRA
-- Node, npm
-- CSS, SASS
 - ESlint
 - Prettier
 
@@ -69,6 +66,10 @@
 - Signup: 이름, 이메일, 전화번호, 비밀번호, 비밀번호 재확인 유효성 검사 기능
 - Login: 이메일, 비밀번호 유효성 검사 및 실패시 경고모달창 생성 
 - NavBar: 로그인시 피드항목 생성 로그아웃시 피드항목 삭제
+
+#### 🐰 홍효정
+- Wallpaper: React Slick slider library사용, JWT를 이용한 유저 팔로우 기능, 배경화면 리스트 메뉴탭, 필터링 기능
+- Wallpaper Detail: 동적 라우터를 이용한 페이지 이동
 
 <br>
 
