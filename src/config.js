@@ -1,7 +1,11 @@
-export const SH_URL = "http://10.58.3.92:8000";
-export const ST_URL = "http://10.58.7.192:8000";
+export const SH_URL = "http://192.168.41.210:8000";
+export const ST_URL = "http://192.168.41.210:8000";
+export const WORKS = "http://192.168.41.210:8000/works"
+export const WALLPAPER = "http://192.168.41.210:8000/works/wallpaper"
 export const API = "http://localhost:3000";
-export const CARDDATA = "http://10.58.7.192:8000/works/";
+export const CARDDATA = "http://192.168.41.210/works/";
+
+export const TOKEN = localStorage.getItem("Authorization");
 
 export const DISCOVERTABLIST = [
   { id: 1, name: "태그별" },
