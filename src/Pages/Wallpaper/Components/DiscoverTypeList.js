@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { ST_URL, CATEGORY } from "../../../config";
+import { WALLPAPER, CATEGORY } from "../../../config";
 import CardViewItem from "../../../Components/Wallpaper/CardViewItem";
 import DiscoverCardViewOrder from "./DiscoverCardViewOrder";
 
@@ -21,10 +21,9 @@ class DiscoverTypeList extends Component {
 
   componentDidMount() {
     const { discoverSort, discoverOrder, discoverTypeCategory } = this.state;
-    const { infiniteScroll } = this;
 
     fetch(
-      `${ST_URL}/works/wallpaper/cardlist?sort=${discoverSort}&order=${discoverOrder}&id=${discoverTypeCategory}`
+      `${WALLPAPER}/cardlist?sort=${discoverSort}&order=${discoverOrder}&id=${discoverTypeCategory}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -32,15 +31,13 @@ class DiscoverTypeList extends Component {
           cardViewList: res.discoverTypeData.cardViewList,
         });
       });
-
-    window.addEventListener("scroll", infiniteScroll);
   }
 
   handleClickTypeItem = (id) => {
     const { discoverSort, discoverOrderCurrent } = this.state;
 
     fetch(
-      `${ST_URL}/works/wallpaper/cardlist?sort=${discoverSort}&order=${discoverOrderCurrent}&id=${id}`
+      `${WALLPAPER}/cardlist?sort=${discoverSort}&order=${discoverOrderCurrent}&id=${id}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -56,7 +53,7 @@ class DiscoverTypeList extends Component {
     const { discoverSort, discoverTypeActive } = this.state;
 
     fetch(
-      `${ST_URL}/works/wallpaper/cardlist?sort=${discoverSort}&order=${name}&id=${discoverTypeActive}`
+      `${WALLPAPER}/cardlist?sort=${discoverSort}&order=${name}&id=${discoverTypeActive}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -117,15 +114,15 @@ class DiscoverTypeList extends Component {
               </ul>
             </div>
             <ul className="CardViewList clearFix">
-              {cardViewList.map((tag) => (
+              {cardViewList.map((card) => (
                 <CardViewItem
-                  key={tag.wallpaper_id}
-                  wallpaper_id={tag.wallpaper_id}
-                  wallpaperSrc={tag.wallpaperSrc}
-                  name={tag.name}
-                  subject={tag.subject}
-                  profileImgSrc={tag.profileImgSrc}
-                  downloadNum={tag.downloadNum}
+                  key={card.wallpaper_id}
+                  wallpaper_id={card.wallpaper_id}
+                  wallpaperSrc={card.wallpaperSrc}
+                  name={card.name}
+                  subject={card.subject}
+                  profileImgSrc={card.profileImgSrc}
+                  downloadNum={card.downloadNum}
                 />
               ))}
             </ul>

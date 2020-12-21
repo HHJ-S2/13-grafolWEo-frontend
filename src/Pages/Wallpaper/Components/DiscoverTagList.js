@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { ST_URL } from "../../../config";
+import { WALLPAPER } from "../../../config";
 import CardViewItem from "../../../Components/Wallpaper/CardViewItem";
 import DiscoverCardViewOrder from "./DiscoverCardViewOrder";
 
@@ -28,7 +28,7 @@ class DiscoverTagList extends Component {
     const { infiniteScroll } = this;
 
     fetch(
-      `${ST_URL}/works/wallpaper/cardlist?sort=${discoverSort}&order=${discoverOrder}&limit=${LIMIT}&offset=${cardDataOrder}`
+      `${WALLPAPER}/cardlist?sort=${discoverSort}&order=${discoverOrder}&limit=${LIMIT}&offset=${cardDataOrder}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -52,7 +52,7 @@ class DiscoverTagList extends Component {
     const { discoverSort, discoverOrderCurrent } = this.state;
 
     fetch(
-      `${ST_URL}/works/wallpaper/cardlist?sort=${discoverSort}&id=${id}&order=${discoverOrderCurrent}`
+      `${WALLPAPER}/cardlist?sort=${discoverSort}&id=${id}&order=${discoverOrderCurrent}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -68,7 +68,7 @@ class DiscoverTagList extends Component {
     const { discoverSort, discoverTagActive } = this.state;
 
     fetch(
-      `${ST_URL}/works/wallpaper/cardlist?sort=${discoverSort}&order=${name}&id=${discoverTagActive}`
+      `${WALLPAPER}/cardlist?sort=${discoverSort}&order=${name}&id=${discoverTagActive}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -101,7 +101,7 @@ class DiscoverTagList extends Component {
     } = this.state;
 
     fetch(
-      `${ST_URL}/works/wallpaper/cardlist?sort=${discoverSort}&order=${discoverOrder}&limit=${LIMIT}&offset=${cardDataOrder}&id=${discoverTagActive}`
+      `${WALLPAPER}/cardlist?sort=${discoverSort}&order=${discoverOrder}&limit=${LIMIT}&offset=${cardDataOrder}&id=${discoverTagActive}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -165,15 +165,15 @@ class DiscoverTagList extends Component {
               </ul>
             </div>
             <ul className="CardViewList clearFix">
-              {cardViewList.map((tag) => (
+              {cardViewList.map((card) => (
                 <CardViewItem
-                  key={tag.wallpaper_id}
-                  wallpaper_id={tag.wallpaper_id}
-                  wallpaperSrc={tag.wallpaperSrc}
-                  name={tag.name}
-                  subject={tag.subject}
-                  profileImgSrc={tag.profileImgSrc}
-                  downloadNum={tag.downloadNum}
+                  key={card.wallpaper_id}
+                  wallpaper_id={card.wallpaper_id}
+                  wallpaperSrc={card.wallpaperSrc}
+                  name={card.name}
+                  subject={card.subject}
+                  profileImgSrc={card.profileImgSrc}
+                  downloadNum={card.downloadNum}
                 />
               ))}
             </ul>

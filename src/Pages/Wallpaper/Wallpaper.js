@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import { ST_URL, DISCOVERTABLIST } from "../../config";
+import { TOKEN, WORKS, WALLPAPER, DISCOVERTABLIST } from "../../config";
 import TopCreator from "./Components/TopCreator";
 import DiscoverTagList from "./Components/DiscoverTagList";
 import DiscoverColorList from "./Components/DiscoverColorList";
@@ -29,7 +29,7 @@ class Wallpaper extends Component {
   }
 
   componentDidMount() {
-    fetch(`${ST_URL}/works/wallpaper/editorpick`)
+    fetch(`${WALLPAPER}/editorpick`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -39,10 +39,8 @@ class Wallpaper extends Component {
         });
       });
 
-    const token = localStorage.getItem("Authorization");
-
-    if (!token) {
-      fetch(`${ST_URL}/works/wallpaper/topcreators`)
+    if (!TOKEN) {
+      fetch(`${WALLPAPER}/topcreators`)
         .then((res) => res.json())
         .then((res) => {
           this.setState({
@@ -50,9 +48,9 @@ class Wallpaper extends Component {
           });
         });
     } else {
-      fetch(`${ST_URL}/works/wallpaper/topcreators`, {
+      fetch(`${WALLPAPER}/topcreators`, {
         headers: {
-          Authorization: token,
+          Authorization: TOKEN,
         },
       })
         .then((res) => res.json())
@@ -70,14 +68,13 @@ class Wallpaper extends Component {
     const selected = topCreators[index];
     const nextTopCreator = [...topCreators];
 
-    const token = localStorage.getItem("Authorization");
-    if (!token) {
+    if (!TOKEN) {
       alert("로그인을 해주세요.");
     } else {
-      fetch(`${ST_URL}/works/follow`, {
+      fetch(`${WORKS}/follow`, {
         method: "post",
         headers: {
-          Authorization: token,
+          Authorization: TOKEN,
         },
         body: JSON.stringify({
           creator_id: id,
@@ -97,7 +94,7 @@ class Wallpaper extends Component {
   };
 
   handleClickEditorPickTag = (id) => {
-    fetch(`${ST_URL}/works/wallpaper/editorpick?tag=${id}`)
+    fetch(`${WALLPAPER}/editorpick?tag=${id}`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -170,11 +167,11 @@ class Wallpaper extends Component {
         />
       ));
 
-    const settings = {
+    const slideSetting = {
       dots: false,
       arrows: true,
       infinite: true,
-      speed: 800,
+      speed: 1000,
       slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true,
@@ -207,7 +204,7 @@ class Wallpaper extends Component {
                   ))}
                 </ul>
               </h2>
-              <Slider {...settings} className="slideWrap">
+              <Slider {...slideSetting} className="slideWrap">
                 {editorsPickSlideList}
               </Slider>
             </div>
