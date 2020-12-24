@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Slider from "react-slick";
 import { TOKEN, WORKS, WALLPAPER, DISCOVERTABLIST } from "../../config";
 import TopCreator from "./Components/TopCreator";
@@ -29,35 +30,48 @@ class Wallpaper extends Component {
   }
 
   componentDidMount() {
-    fetch(`${WALLPAPER}/editorpick`)
-      .then((res) => res.json())
+    this.getData();
+  }
+
+  getData = async () => {
+    await axios
+      .get(`${WALLPAPER}/editorpick`)
       .then((res) => {
         this.setState({
-          editorsPickTagList: res.editorsPickData.TagList,
-          editorsPickSlides: res.editorsPickData.Slides,
-          editorsPickTagActive: res.editorsPickData.TagList[0].id,
+          editorsPickTagList: res.data.editorsPickData.TagList,
+          editorsPickSlides: res.data.editorsPickData.Slides,
+          editorsPickTagActive: res.data.editorsPickData.TagList[0].id,
         });
+      })
+      .catch((err) => {
+        console.log(err.response);
       });
 
     if (!TOKEN) {
-      fetch(`${WALLPAPER}/topcreators`)
-        .then((res) => res.json())
+      await axios
+        .get(`${WALLPAPER}/topcreators`)
         .then((res) => {
           this.setState({
-            topCreators: res.topCreators,
+            topCreators: res.data.topCreators,
           });
+        })
+        .catch((err) => {
+          console.log(err.response);
         });
     } else {
-      fetch(`${WALLPAPER}/topcreators`, {
-        headers: {
-          Authorization: TOKEN,
-        },
-      })
-        .then((res) => res.json())
+      await axios
+        .get(`${WALLPAPER}/topcreators`,{
+          headers: {
+            Authorization: TOKEN
+          }
+        })
         .then((res) => {
           this.setState({
-            topCreators: res.topCreators,
+            topCreators: res.data.topCreators,
           });
+        })
+        .catch((err) => {
+          console.log(err.response);
         });
     }
   }

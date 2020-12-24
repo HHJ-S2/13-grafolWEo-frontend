@@ -22,10 +22,9 @@ class WallpaperDetail extends Component {
   }
 
   getData = () => {
-    // const adr = this.props.location.pathname.split("/");
     const adr = this.props.match.params.id;
+    
     fetch(`${ST_URL}/works/wallpaper/${adr}`)
-      // fetch(`${ST_URL}/works/wallpaper/${adr[2]}`)
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
